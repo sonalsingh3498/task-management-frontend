@@ -19,8 +19,8 @@ A Task Management Application built with React Native for the frontend and Expre
 - Database: MongoDB
 
 ## Getting Started
-1.update SERVER_IP value in /src/common/config.js
-To get IP value type ipconfig in cmd and find IPv4 Address update its value in SERVER_IP
+1.Update SERVER_IP value in /src/common/config.js,
+to get IP value type _ipconfig_ in command prompt and find IPv4 Address update its value in SERVER_IP
 
 2.Start the Android emulator from Android Studio by going to Tools > AVD Manager, then selecting and starting your preferred AVD.
 
