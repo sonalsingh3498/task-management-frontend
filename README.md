@@ -33,7 +33,8 @@ To get IP value type ipconfig in cmd and find IPv4 Address update its value in S
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/sonalsingh3498/task-management-backend.git
+git clone https://github.com/sonalsingh3498/task-management-frontend.git
+- cd task-management-frontend
 - npm i
 - npm start 
 - w to run on web
