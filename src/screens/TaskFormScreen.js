@@ -6,6 +6,8 @@ import { useNavigation } from '@react-navigation/native';
 
 const TaskFormScreen = ({ route }) => {
   const { task, onSave } = route.params;
+  const [error, setError] = useState('');
+
   const [title, setTitle] = useState(task ? task.title : '');
   const [description, setDescription] = useState(task ? task.description : '');
   const navigation = useNavigation();
@@ -16,7 +18,10 @@ const TaskFormScreen = ({ route }) => {
       title: title.trim(),
       description: description.trim(),
     };
-
+    if (title.trim() === '' || description.trim() === '') {
+      setError('Title and description are required.');
+      
+    }else{
     if (task) {
       // If task exists, update it
       updatedTask.id = task._id; // Ensure to include the task ID for update
@@ -25,7 +30,7 @@ const TaskFormScreen = ({ route }) => {
     } else {
       // Otherwise, save a new task
       saveTask(updatedTask);
-    }
+    }}
   };
 
   // Function to save a new task
@@ -75,8 +80,10 @@ const TaskFormScreen = ({ route }) => {
         console.error('Error updating task:', error);
       });
   };
-
+console.log(error,"error")
   return (
+    <>
+    {error ? <Text style={styles.errorText}>{error}</Text> :""}
     <View style={styles.container}>
       <TextInput
         style={styles.input}
@@ -92,11 +99,13 @@ const TaskFormScreen = ({ route }) => {
         onChangeText={(text) => setDescription(text)}
       />
       <TouchableOpacity onPress={saveOrUpdateTask}>
-        <View style={styles.button}>
+        <View style={styles.button} role="button">
           <Text style={styles.buttonText}>{task ? 'Update' : 'Save'}</Text>
         </View>
       </TouchableOpacity>
     </View>
+    </>
+    
   );
 };
 
@@ -123,6 +132,10 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
     fontSize: 18,
+  },
+  errorText: {
+    color: 'red',
+    marginBottom: 10,
   },
 });
 

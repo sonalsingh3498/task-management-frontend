@@ -55,9 +55,9 @@ const HomeScreen = ({ navigation }) => {
   const addTask = (task) => {
     setTasks([...tasks, { ...task, id: Date.now().toString() }]);
   };
-
   const renderItem = ({ item }) => (
     <TaskItem
+      key={item.id}
       task={item}
       onView={(taskId) => navigation.navigate('Task Detail', { taskId, onEdit: handleEdit, onDelete: deleteTask })}
       onEdit={(task) => navigation.navigate('Task Form', { task, onSave: saveTask })}
@@ -73,8 +73,8 @@ const HomeScreen = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.container}>
-      <FlatList data={tasks} keyExtractor={(item) => item.id} renderItem={renderItem} />
+    <View style={styles.container} > 
+      <FlatList data={tasks}  renderItem={renderItem} />
       <Pressable style={styles.addButton} onPress={() => navigation.navigate('Task Form', { onSave: saveTask })}>
         <Text style={styles.addButtonText}>Add Task</Text>
       </Pressable>

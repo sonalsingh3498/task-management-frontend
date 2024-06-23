@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, Modal, Pressable, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons'; // Import FontAwesome icons from Expo
-import { useNavigation } from '@react-navigation/native'; // Import useNavigation hook from React Navigation
 import { SERVER_IP } from '../common/config';
 
 const TaskItem = ({ task, onEdit, onDelete }) => {
@@ -10,8 +9,7 @@ const TaskItem = ({ task, onEdit, onDelete }) => {
   const [status, setStatus] = useState(task.completed); // Initialize status with task completed status
   const [offlineMode, setOfflineMode] = useState(false); // Assume an offline mode flag
   const [taskData, setTaskData] = useState(task); // Initialize task data
-  const navigation = useNavigation(); // Navigation hook from React Navigation
-
+console.log(task,"task")
   const openViewModal = () => {
     setViewModalVisible(true);
   };
@@ -79,19 +77,19 @@ const TaskItem = ({ task, onEdit, onDelete }) => {
   };
 
   return (
-    <View style={styles.taskContainer}>
-      <View style={styles.taskInfo}>
-        <Text style={styles.taskTitle}>{task.title}</Text>
+    <View style={styles.taskContainer} key={task._id}>
+      <View style={styles.taskInfo} >
+        <Text style={styles.taskTitle} >{task.title}</Text>
         <Text style={styles.taskDescription}>{task.description}</Text>
       </View>
-      <View style={styles.buttonContainer}>
-        <Pressable style={styles.button} onPress={openViewModal}>
+      <View style={styles.buttonContainer} key={task._id} >
+        <Pressable style={styles.button} onPress={openViewModal} role="button">
           <FontAwesome name="eye" size={20} color="white" />
         </Pressable>
-        <Pressable style={styles.button} onPress={() => onEdit(task)}>
+        <Pressable style={styles.button} onPress={() => onEdit(task)} role="button">
           <FontAwesome name="edit" size={20} color="white" />
         </Pressable>
-        <Pressable style={[styles.button, styles.buttonDelete]} onPress={() => setModalVisible(true)}>
+        <Pressable style={[styles.button, styles.buttonDelete]} onPress={() => setModalVisible(true)} role="button">
           <FontAwesome name="trash" size={20} color="white" />
         </Pressable>
       </View>
@@ -102,8 +100,9 @@ const TaskItem = ({ task, onEdit, onDelete }) => {
         transparent={true}
         visible={viewModalVisible}
         onRequestClose={closeViewModal}
+       
       >
-        <View style={styles.modalContainer}>
+        <View style={styles.modalContainer}  key={task.title}>
           <View style={styles.modalView}>
             <Text style={styles.modalTitle}>{task.title}</Text>
             <Text style={styles.modalDescription}>{task.description}</Text>
@@ -170,6 +169,7 @@ const styles = StyleSheet.create({
   },
   taskInfo: {
     flex: 1,
+    pointerEvents: 'none',
   },
   taskTitle: {
     fontSize: 18,
@@ -184,6 +184,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     gap: 10,
+    pointerEvents: 'none',
     // marginTop: 5,
   },
   button: {
@@ -216,6 +217,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 10,
     alignItems: 'center',
+    pointerEvents: 'none',
   },
   modalTitle: {
     fontSize: 24,

@@ -6,9 +6,10 @@ import HomeScreen from './src/screens/HomeScreen';
 import EditTaskScreen from './src/screens/EditTaskScreen';
 import TaskFormScreen from './src/screens/TaskFormScreen';
 import TaskDetailScreen from './src/screens/TaskDetailScreen';
-
+import { LogBox } from 'react-native';
 
 const Stack = createStackNavigator();
+LogBox.ignoreAllLogs(); // Ignore all logs
 
 const App = () => {
   return (
