@@ -59,8 +59,8 @@ const HomeScreen = ({ navigation }) => {
   const renderItem = ({ item }) => (
     <TaskItem
       task={item}
-      onView={(taskId) => navigation.navigate('TaskDetail', { taskId, onEdit: handleEdit, onDelete: deleteTask })}
-      onEdit={(task) => navigation.navigate('TaskForm', { task, onSave: saveTask })}
+      onView={(taskId) => navigation.navigate('Task Detail', { taskId, onEdit: handleEdit, onDelete: deleteTask })}
+      onEdit={(task) => navigation.navigate('Task Form', { task, onSave: saveTask })}
       onDelete={(id) => {
         deleteTask(id);
         setTimeout(fetchTasks, 100);
@@ -69,13 +69,13 @@ const HomeScreen = ({ navigation }) => {
   );
 
   const handleEdit = (task) => {
-    navigation.navigate('TaskForm', { task, onSave: saveTask });
+    navigation.navigate('Task Form', { task, onSave: saveTask });
   };
 
   return (
     <View style={styles.container}>
       <FlatList data={tasks} keyExtractor={(item) => item.id} renderItem={renderItem} />
-      <Pressable style={styles.addButton} onPress={() => navigation.navigate('TaskForm', { onSave: saveTask })}>
+      <Pressable style={styles.addButton} onPress={() => navigation.navigate('Task Form', { onSave: saveTask })}>
         <Text style={styles.addButtonText}>Add Task</Text>
       </Pressable>
     </View>

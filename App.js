@@ -15,9 +15,9 @@ const App = () => {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="EditTask" component={EditTaskScreen} />
-        <Stack.Screen name="TaskForm" component={TaskFormScreen} />
-        <Stack.Screen name="TaskDetail" component={TaskDetailScreen} />
+        <Stack.Screen name="Edit Task" component={EditTaskScreen} />
+        <Stack.Screen name="Task Form" component={TaskFormScreen} />
+        <Stack.Screen name="Task Detail" component={TaskDetailScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
