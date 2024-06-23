@@ -82,14 +82,14 @@ console.log(task,"task")
         <Text style={styles.taskTitle} >{task.title}</Text>
         <Text style={styles.taskDescription}>{task.description}</Text>
       </View>
-      <View style={styles.buttonContainer} key={task._id} >
-        <Pressable style={styles.button} onPress={openViewModal} role="button">
+      <View style={styles.buttonContainer} key={task._id}>
+        <Pressable style={styles.button} onPress={openViewModal}>
           <FontAwesome name="eye" size={20} color="white" />
         </Pressable>
-        <Pressable style={styles.button} onPress={() => onEdit(task)} role="button">
+        <Pressable style={styles.button} onPress={() => onEdit(task)}>
           <FontAwesome name="edit" size={20} color="white" />
         </Pressable>
-        <Pressable style={[styles.button, styles.buttonDelete]} onPress={() => setModalVisible(true)} role="button">
+        <Pressable style={[styles.button, styles.buttonDelete]} onPress={() => setModalVisible(true)}>
           <FontAwesome name="trash" size={20} color="white" />
         </Pressable>
       </View>
@@ -169,7 +169,6 @@ const styles = StyleSheet.create({
   },
   taskInfo: {
     flex: 1,
-    pointerEvents: 'none',
   },
   taskTitle: {
     fontSize: 18,
@@ -184,7 +183,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     gap: 10,
-    pointerEvents: 'none',
     // marginTop: 5,
   },
   button: {
@@ -217,7 +215,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 10,
     alignItems: 'center',
-    pointerEvents: 'none',
   },
   modalTitle: {
     fontSize: 24,
