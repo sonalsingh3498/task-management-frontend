@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { View, TextInput, Button, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { SERVER_IP } from '../common/config';
+import { useNavigation } from '@react-navigation/native';
 
 
-const TaskFormScreen = ({ route, navigation }) => {
+const TaskFormScreen = ({ route }) => {
   const { task, onSave } = route.params;
   const [title, setTitle] = useState(task ? task.title : '');
   const [description, setDescription] = useState(task ? task.description : '');
+  const navigation = useNavigation();
 
   // Function to save or update task
   const saveOrUpdateTask = () => {

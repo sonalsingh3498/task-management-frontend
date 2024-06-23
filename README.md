@@ -19,14 +19,17 @@ A Task Management Application built with React Native for the frontend and Expre
 - Database: MongoDB
 
 ## Getting Started
-update SERVER_IP value in /src/common/config.js
-
+1.update SERVER_IP value in /src/common/config.js
 To get IP value type ipconfig in cmd and find IPv4 Address update its value in SERVER_IP
+
+2.Start the Android emulator from Android Studio by going to Tools > AVD Manager, then selecting and starting your preferred AVD.
+
 ### Prerequisites
 
 - Node.js
 - npm or yarn
 - MongoDB
+- Android Studio
 
 ### Installation
 
@@ -37,4 +40,5 @@ git clone https://github.com/sonalsingh3498/task-management-frontend.git
 - cd task-management-frontend
 - npm i
 - npm start 
+- a to run on AVD
 - w to run on web
