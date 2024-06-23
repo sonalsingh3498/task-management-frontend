@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, ActivityIndicator, Button, Alert } from 'react-native';
+import { View, Text, StyleSheet, ActivityIndicator, Pressable, Alert } from 'react-native';
 import { SERVER_IP } from '../common/config';
 import { getTasksFromStorage, saveTasksToStorage } from '../utils/storage'; // Adjust the path as per your project structure
 
@@ -107,10 +107,22 @@ const TaskDetailScreen = ({ route }) => {
       <Text style={styles.title}>{task.title}</Text>
       <Text style={styles.description}>{task.description}</Text>
       <Text style={styles.status}>Status: {status ? 'Completed' : 'Pending'}</Text>
-      <Button
-        title={status ? 'Mark as Pending' : 'Mark as Completed'}
+      <Pressable
+        style={({ pressed }) => [
+          {
+            backgroundColor: pressed ? 'rgb(210, 230, 255)' : 'rgb(255, 255, 255)',
+            opacity: pressed ? 0.5 : 1,
+          },
+          styles.pressableButton
+        ]}
         onPress={toggleStatus}
-      />
+      >
+        {({ pressed }) => (
+          <Text style={styles.pressableText}>
+            {status ? 'Mark as Pending' : 'Mark as Completed'}
+          </Text>
+        )}
+      </Pressable>
     </View>
   );
 };
@@ -144,6 +156,20 @@ const styles = StyleSheet.create({
   errorText: {
     fontSize: 18,
     color: 'red',
+  },
+  pressableButton: {
+    padding: 10,
+    borderRadius: 5,
+    marginTop: 10,
+    minWidth: 150,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: '#007AFF',
+  },
+  pressableText: {
+    fontSize: 16,
+    color: '#007AFF',
   },
 });
 
